@@ -173,9 +173,18 @@
         submenuList.querySelectorAll('li').forEach((li) => {
           li.addEventListener('click', () => {
             const columnClass = `column-${li.getAttribute('data-column')}`;
-            document.querySelectorAll(`.${columnClass}`).forEach((element) => {
+            const columns = bankTable.querySelectorAll(`.${columnClass}`);
+            const isVisible = !columns[0].classList.contains('hidden-column');
+            
+            columns.forEach((element) => {
               element.classList.toggle('hidden-column');
             });
+
+            if (isVisible) {
+              li.classList.add('hidden-column');
+            } else {
+              li.classList.remove('hidden-column');
+            }
           });
         });
 
